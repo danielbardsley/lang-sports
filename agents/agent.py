@@ -11,11 +11,15 @@ from langchain_community.tools.wikipedia.tool import WikipediaQueryRun
 from langgraph.prebuilt import ToolNode
 from langgraph.graph import StateGraph, END, add_messages
 
-from tools.events.tool import EventQueryRun
+from tools.competitions.tool import CompetitionsQueryRun
+from tools.sports.tool import SportsQueryRun
+from tools.events.tool import EventsQueryRun
 
-# tools = [TavilySearchResults(max_results=1), WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())]
-# tools = [WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())]
-tools = [EventQueryRun()]
+tools = [TavilySearchResults(max_results=1),
+         WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper()),
+         SportsQueryRun(),
+         EventsQueryRun(),
+         CompetitionsQueryRun()]
 
 
 @lru_cache(maxsize=4)
@@ -47,8 +51,11 @@ def should_continue(state):
         return "continue"
 
 
-system_prompt = """Be a helpful assistant, The date is 2024-10-8 so if you think you can't answer a questions because
-an event is in the future then please use the tools provided to get the best answer you can."""
+system_prompt = """Be a helpful assistant, The date is 2024-10-20 so if you think you can't answer a questions because
+an event is in the future then please use the tools provided to get the best answer you can. Never mention the specific
+name of a tool, make it look like you already knew the answer. When answering questions always try and provide a relevant
+competition id and event id"""
+
 
 # Define the function that calls the model
 def call_model(state, config):
