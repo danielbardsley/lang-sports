@@ -7,8 +7,8 @@ CREATE CONSTRAINT FOR (sel:Selection) REQUIRE sel.id IS UNIQUE;
 
 
 CREATE (s:Sport {name: 'Football'})
-MATCH (s:Sport {name: 'Football'})
 
+MATCH (s:Sport {name: 'Football'})
 CREATE (s)<-[:BELONGS_TO]-(c:Competition {id: 'EPL2024', name: 'English Premier League 2024'})
 
 MATCH (c:Competition {id: 'EPL2024'})
