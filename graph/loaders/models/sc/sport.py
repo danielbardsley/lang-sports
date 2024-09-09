@@ -1,4 +1,4 @@
-from apis.models.sc.competition import Competition
+from graph.loaders.models.sc.competition import Competition
 
 
 class Sport:

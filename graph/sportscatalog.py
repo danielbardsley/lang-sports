@@ -1,8 +1,8 @@
 import requests
 import logging
 
-from apis.models.sc.event import Event
-from apis.models.sc.sport import Sport
+from graph.loaders.models.sc.event import Event
+from graph.loaders.models.sc.sport import Sport
 
 
 class SportsCatalog:
@@ -13,12 +13,12 @@ class SportsCatalog:
         self.sports_url = base_url + '/sports?eventsWithActiveMarkets=true'
 
     def sports(self):
-        logging.info('Getting all sports')
+        logging.info('Getting all sports from sports catalog')
         response = requests.get(self.sports_url)
         return [Sport(x) for x in response.json()]
 
     def events(self, competition_id):
-        logging.info('Getting all events for competition {}'.format(competition_id))
+        logging.info('Getting all events for competition {} from sports catalog'.format(competition_id))
         query_url = self.events_by_competition_url.format(competition_id=competition_id)
         response = requests.get(query_url)
         return [Event(x) for x in response.json()]

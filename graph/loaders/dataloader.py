@@ -33,6 +33,7 @@ class DataLoader:
     def load(self):
         self.event_loader.load_catalog()
         self.metadata_loader.load_promoted_events_metadata()
+        self.metadata_loader.load_competition_metadata()
 
 
 if __name__ == '__main__':

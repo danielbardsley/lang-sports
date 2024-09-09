@@ -30,3 +30,8 @@ class EventLoader:
 
     def _load_market(self, event_id, market):
         self.sports_graph.add_market(event_id, market.id, market.name)
+        for selection in market.selections:
+            self._load_selections(market.id, selection)
+
+    def _load_selections(self, market_id, selection):
+        self.sports_graph.add_selection(market_id, selection.id, selection.name, selection.price.a)

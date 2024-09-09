@@ -3,7 +3,7 @@ import requests
 from flask import Flask, request
 from dotenv import load_dotenv
 
-from apis.models.sc.event import Event
+from graph.loaders.models.sc import Event
 
 load_dotenv()
 

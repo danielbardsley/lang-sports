@@ -1,4 +1,4 @@
-from apis.models.sc.market import Market
+from graph.loaders.models.sc.market import Market
 
 
 class Event:
